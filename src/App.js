@@ -1,33 +1,38 @@
 import './index.css';
-import Header from './components/Header';
-import Welcome from './components/Welcome';
-import BottomLine from './components/BottomLine';
+import {useLazyGetItemsQuery} from './redux/api';
+import { AppBar, Button, Input, Toolbar } from '@mui/material';
+import { useState } from 'react';
 import List from './components/List';
-import {useGetItemsQuery} from './redux/api';
-import { setFilter } from './redux/slice/slice';
 
 function App() {
 
-  const {data = [], isLoading} = useGetItemsQuery()
-  const fill = setFilter()
+  const [input, setInput] = useState('')
+  const [trigger, {data}] = useLazyGetItemsQuery({arg: input})
 
-  const changeStyles = () => {
-    document.getElementById('welcome').style.display = 'none'
-    document.getElementById('list_section').style.visibility = 'visible'
+  const GetData = () => {
+    trigger(input)
+    return data
   }
-
-  if(isLoading) return <h1>Loading...</h1>
 
   return (
     <div className="App">
-      <Header />
-      <Welcome changeStyles={changeStyles} />
-      <List data={data} />
-      <div>{console.log(fill)}</div>
-      <BottomLine />
+      <div className='header'>
+        <AppBar position='static' sx={{ backgroundColor: '#00838F' }}>
+            <Toolbar>
+                <Input  value={input} onChange={e => setInput(e.target.value)} sx={{ width: '68%', padding: '9px 16px', backgroundColor: 'white', mr: '8px'  }} placeholder='Введите поисковый запрос' />
+                <Button onClick={GetData} variant='contained'>ИСКАТЬ</Button>
+            </Toolbar>
+        </AppBar>
+      </div>
+      {data === undefined ? <p className='welcome_text'>Добро пожаловать</p> : null }
+      <div className="list_section">
+        {data !== undefined ? <List data={data} /> : null}
+      </div>
+      <div className="bottom_line"></div>
     </div>
   );
 
 }
+
 
 export default App

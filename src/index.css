@@ -34,8 +34,6 @@ ul{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  cursor: pointer;
-  z-index: 3;
 }
 
 .bottom_line{
@@ -43,11 +41,11 @@ ul{
   height: 32px;
   background-color: #4F4F4F;
   position: absolute;
+  bottom: 0;
 }
 
-#list_section{
+.list_section{
   position: relative;
-  visibility: hidden;
 }
 
 #list_section h1{
@@ -101,6 +99,7 @@ ul{
   top: 0;
   bottom: 0;
   background-color: #F2F2F2;
+  z-index: -1;
 }
 
 .side_bar > p{
@@ -109,4 +108,17 @@ ul{
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.side_bar_container{
+  padding: 24px;
+}
+
+.side_bar_container > h1{
+  margin-bottom: 16px;
+  font-size: 32px;
+}
+
+.side_bar_info{
+  display: flex;
 }

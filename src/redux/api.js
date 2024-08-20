@@ -6,7 +6,12 @@ export const api = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'https://api.github.com/'}),
     endpoints: (builder) => ({
         getItems: builder.query({
-            query: () => `search/repositories?q=blazor`,
+            query: (arg) => {
+                return{
+                    params: {arg},
+                    url: `search/repositories?q=${arg}`,
+                }
+            }
         })
     }),
 })
@@ -15,5 +20,5 @@ export const api = createApi({
 
 
 
-export const {useGetItemsQuery} = api
+export const {useLazyGetItemsQuery} = api
 export default api.reducer;
