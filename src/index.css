@@ -100,6 +100,7 @@ ul{
   bottom: 0;
   background-color: #F2F2F2;
   z-index: -1;
+  overflow: hidden;
 }
 
 .side_bar > p{
@@ -119,6 +120,43 @@ ul{
   font-size: 32px;
 }
 
+.side_bar_lang{
+  margin-right: auto;
+  background-color: #2196F3;
+  color: white;
+  border-radius: 100px;
+  padding: 7px 10px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.star_icon{
+  margin-right: 10px;
+}
+
 .side_bar_info{
   display: flex;
+  margin-bottom: 16px;
+}
+
+.side_bar_stars{
+  display: flex;
+  align-items: center;
+}
+
+.topics{
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.topic_item{
+  background-color: #00000014;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-right: 8px;
+  font-size: 13px;
+  line-height: 18px;
+  margin-top: 10px;
+
 }

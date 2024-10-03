@@ -4,6 +4,7 @@ import SideBar from "./SideBar"
 function List(props) {
 
     const [fill, setFill] = useState({})
+    const [sort, setSort] = useState([])
     const emptyFill = !Object.keys(fill).length
 
     const fillItems = (id) => {
@@ -22,7 +23,7 @@ function List(props) {
                     <li><strong>Дата обновления</strong></li>
                 </ul>
                 <div className="lists">
-                {props.data.items.map((item, index) => {
+                    {sort.length === 0 ? (props.data.items.map((item, index) => {
                      return(
                         <ul onClick={() => fillItems(item.id)} key={index} id={item.id}>
                             <li className="list_item">
@@ -42,7 +43,13 @@ function List(props) {
                             </li>
                         </ul>
                     )
-                })}
+                })) : (sort.map(item => {
+                    return(
+                        <ul>
+                            <li className="list_item">{item}</li>
+                        </ul>
+                    )
+                }))}
                 </div>
             </div>
             {emptyFill ? null : (<SideBar fill={fill} emptyFill={emptyFill} />)}

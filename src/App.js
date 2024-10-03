@@ -28,7 +28,6 @@ function App() {
       <div className="list_section">
         {data !== undefined ? <List data={data} /> : null}
       </div>
-      <div className="bottom_line"></div>
     </div>
   );
 
